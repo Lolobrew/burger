@@ -19,15 +19,21 @@ router.get('/burgers', function(req, res){
 
 
 
-router.post("/burgers/create", function(err, req, res) {
+router.post("/burgers/create", function(req, res) {
   console.log(req.burger_name);
-  burger.create(res.body.burger_name, function(result){
+  burger.create(req.body.burger_name, function(result){
       res.redirect('/');
       console.log(result);
     }); 
 });
 
-router.put("/burgers/update", function(req, res){
+router.put('/burgers/update', function( req, res){
+  burger.update(req.body.burger_id, function(result){
+    res.redirect('/');
+    console.log(result);
+  });
+});
+/*router.put("/burgers/update", function(req, res){
   burger.update(res.body.id, function(result){
     res.redirect('/');
     console.log(result);
